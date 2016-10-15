@@ -22,33 +22,6 @@ app.use(bp.json());
 
 app.use(bp.urlencoded({extended: true}));
 
-// app.use(expressValidator({
-//  customValidators: {
-//    isEmailAvailable: function(email) {
-//      return new Promise(function(resolve, reject) {
-//      	console.log("Callback initiated");
-
-//        User.findOne({ email: email }, function(err, user){
-//        	 if (err) {
-//        	 	console.log("weird db error");
-//        	 	reject(err);
-//        	 } else {
-//             if (user) {
-//          	  console.log("About to resolve");
-//               resolve(user);
-//             } else {
-//          	  console.log("About to reject");
-//               reject(user);
-//             }      	 	
-//        	 }
-//        });
-//      }).catch(function(err){
-//      	console.log(err);
-//      });
-//    }
-//  }
-// }));
-
 app.use(expressValidator({
  customValidators: {
    isEmailAvailable: function(email) {
@@ -72,8 +45,6 @@ app.use(expressValidator({
  }
 }));
 
-//start up validator
-
 app.use(session({
     secret: 'itsasecret989',
     resave: true,
@@ -95,13 +66,12 @@ app.get('*', function(req, res){
 })
 
 app.use(function(err, req, res, next){
-	// if(err.kind === "ObjectId"){
-	// 	res.status(404)
-	// 	.send('Not Found');
-	// } else {
-
+	if(err.kind === "ObjectId"){
+		res.status(404)
+		.send('Not Found');
+	} else {
 		res.status(500).send(err.message);
-	// }
+	}
 });
 
 

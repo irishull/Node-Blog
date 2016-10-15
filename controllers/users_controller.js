@@ -6,7 +6,6 @@ var User = require("../models/user");
 router.get('/signup', function(req, res, next) {
 	res.render('users/signup', {title: 'Form Validation', success: req.session.success, errors: req.session.errors });
 	req.session.errors = null;
-	//below resets it
 	req.session.success = null; 
 
 });
@@ -21,8 +20,6 @@ router.post('/signup', function(req, res, next) {
 	req.check('email', 'Email Taken').isEmailAvailable();
 	console.log("after check");
 
-
-	//var errors = req.validationErrors();
 	req.asyncValidationErrors().then(function(){
 		User.create(req.body, function(err, data){
 			if (err) {
@@ -32,7 +29,6 @@ router.post('/signup', function(req, res, next) {
 					errors: [err]
 				});
 			}
-				//req.session.success = true;
 
 			console.log("User Created");
 					//can add user profile to redirect later.
@@ -52,36 +48,7 @@ router.post('/signup', function(req, res, next) {
 			errors: req.session.errors
 		});
 	});
-	
-	//req.session.success = true;
-		
-
-		// User.find({email: req.body.email}, function(err, data){
-			// index of username in db 1 or more, return error
-			// if(err) {
-			// 	console.log("error in mongo find");
-			// 	req.session.errors = errors;
-			// 	req.session.success = false;
-
-			// 	//pass message, user exists in db
-
-			// 	res.render('users/signup');
-			
-			// } else {
-
-
 });
-			// }
-		// });
-
-
-
-
-
-		//if found 1 
-
-
-
 
 router.get('/login', function(req, res, next) {
 
@@ -89,7 +56,6 @@ router.get('/login', function(req, res, next) {
 		return res.redirect('/users/success');
 	}
 
-//login route
 	var error = req.session.error; 
 	req.session.error = null;
 	res.render('users/login', {title: 'Login', success: req.session.success, error: error });
@@ -98,7 +64,6 @@ router.get('/login', function(req, res, next) {
 
 
 router.post('/login', function(req, res, next) {
-	//if error redirect to login
 
 	User.findOne({email: req.body.email}, function(err, data){
 
