@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <h1>Sign Up</h1>
+
+    <% if (success) { %>
+    	<section class="success">
+    		<h2>Successfully Validated.</h2>
+    	</section>
+    <% } else { %>
+    		<section class="errors">
+    			<li>Errors</li>
+    		</section>
+    <% } %>
+
+
+    <form action="/submit" method="post">
+    	<div class="input">
+				<label for="username">User Name</label>
+				<input type="text" id="username" name="username">
+		</div>
+		
+		<div class="input">
+				<label for="email">E-mail</label>
+				<input type="text" id="email" name="email">
+		</div>
+		<div class="input">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password">
+		</div>
+    </form>
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>
