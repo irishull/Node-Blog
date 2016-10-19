@@ -10,7 +10,14 @@ var session = require('express-session');
 
 var bcrypt = require('bcrypt');
 
+var static = require('node-static');
+
 var app = express();
+
+
+app.use(express.static('node_modules/ckeditor'));
+
+app.use(express.static('js'));
 
 var mongoose = require("mongoose");
 
