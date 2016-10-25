@@ -1,31 +1,28 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
-      <div class="jumbotron container-fluid">
-        <form action="" method="POST" name="articleform">
-          <div class="form-group row">
-            <label for="articletitle">Title</label>
-				    <input class="form-control" type="text" name="title" id="articletitle" value="<%=locals.article ? article.title : '' %>" required>
-          </div>
-           <div class="form-group row">
-            <label for="articleauthor">Author</label>
-            <input class="form-control" type="text" name="author" id="articleauthor" value=" <%=locals.article ? article.author : ''%>" required>
-          </div>
-          <div class="form-group row">
-            <label for="articlebody">Article</label>
-				    <textarea class="form-control" name="body" id="articlebody" cols="30" rows="12" required><%=locals.article ? article.body : ''%></textarea>
-				  </div>
-          <div class="text-center">
-            <button class="btn btn-default">Submit</button>
-            <% if (locals.article) { %>
-              <button class="btn btn-danger" name="trash" value="trash">DELETE</button>
-              <% } %>
-          </div>
-        </form>
-      </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="jumbotron container-fluid">
+                <form action="" method="POST" name="articleform">
+                    <div class="form-group row">
+                        <label for="articletitle">Title</label>
+                        <input class="form-control" type="text" name="title" id="articletitle" value="<%=locals.article ? article.title : '' %>" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="articleauthor">Author</label>
+                        <input class="form-control" type="text" name="author" id="articleauthor" value=" <%=locals.article ? article.author : ''%>" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="articlebody">Article</label>
+                        <textarea class="form-control" name="body" id="articlebody" cols="30" rows="12" required><%=locals.article ? article.body : ''%></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-default">Submit</button>
+                        <% if (locals.article) { %>
+                            <button class="btn btn-danger" name="trash" value="trash">DELETE</button>
+                            <% } %>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-
-

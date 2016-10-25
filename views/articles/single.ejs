@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ../partials/head %>
 </head>
+
 <body>
     <header>
         <% include ../partials/header %>
     </header>
 
-<main>
+    <main>
 
-<div class="content">
+        <div class="content">
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h1 class="articleTitle"><%= article.title %></h1>
-            <h4>By <%= article.author %></h4>
-            <hr>
-            <p><%- article.body %></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <h1 class="articleTitle"><%= article.title %></h1>
+                        <h4>By <%= article.author %></h4>
+                        <hr>
+                        <p>
+                            <%- article.body %>
+                        </p>
 
-            <a href="<%=article._id%>/edit">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>
-        </div>
+                        <a href="<%=article._id%>/edit">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</a>
+                    </div>
 
-          
 
-        
+
+
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+
+    </main>
     </div>
-</div>
-  <div class="col-sm-2"></div>
-
-</main>
-</div> <!-- end content -->
     <footer>
         <% include ../partials/footer %>
     </footer>
 
 </body>
+
 </html>

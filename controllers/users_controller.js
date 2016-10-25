@@ -12,8 +12,6 @@ router.get('/signup', function(req, res, next) {
 
 
 router.post('/signup', function(req, res, next) {
-
-	//Check Validity of values.
 	console.log("Hit Route");
 	req.check('email', 'Invalid email address').isEmail();
 	req.check('password', 'Password is invalid').isLength({min: 6});
@@ -31,9 +29,6 @@ router.post('/signup', function(req, res, next) {
 			}
 
 			console.log("User Created");
-					//can add user profile to redirect later.
-					//set session 
-
 			req.session.currentUser = data;
 
 			return res.redirect("/");
@@ -102,10 +97,6 @@ router.post('/login', function(req, res, next) {
 
 })
 
-router.get('/weird', authenticateUser, function(req, res) {
-	res.send('Hello World');
-});
-
 router.get('/logout', function(req, res, next) {
 
 	req.session.currentUser = null;
@@ -114,15 +105,16 @@ router.get('/logout', function(req, res, next) {
 
 });
 
-router.get('/success', authenticateUser, function(req, res){
+router.get('/success', checkUser, function(req, res){
 	res.render('users/success');
 })
 
 
-function authenticateUser(req, res, next) {
+function checkUser(req, res, next) {
 	if(!req.session.currentUser){
 		req.session.attemptedPath = req.originalUrl;
 		console.log(req.session.attemptedPath);
+		console.log("Unauthorized Edit; redirecting to login");
 		return res.redirect('/users/login')
 	} else {
 		next();

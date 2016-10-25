@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ../partials/head %>
 </head>
+
 <body>
     <header>
         <% include ../partials/header %>
     </header>
 
-<main>
+    <main>
 
-<div class="content">
+        <div class="content">
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-        
-        <% for(var i = 0; i < articles.length; i++) { %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
 
-          <!-- <div class="jumbotron container-fluid"> -->
-          <div class= "panel panel-primary">
-          <div class="panel-heading">
-            <a href="/articles/<%= articles[i]._id %>"
-                style="color: #fff; font-family: Times;">
-              <h1><i class="fa fa-file-text-o" aria-hidden="true"></i> <%= articles[i].title %></h1>
-            </a>
+                        <% for(var i = 0; i < articles.length; i++) { %>
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <a href="/articles/<%= articles[i]._id %>" style="color: #fff; font-family: Times;">
+                                        <h1><i class="fa fa-file-text-o" aria-hidden="true"></i> <%= articles[i].title %></h1>
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+                                    <h4>By <%= articles[i].author %></h4>
+                                </div>
+                            </div>
+                            <% } %>
+
+                    </div>
+
+
+                </div>
             </div>
-              <div class="panel-body">
-            <h4>By <%= articles[i].author %></h4>
-          </div>
-              </div>
-        <% } %>
+            <hr>
+            <div class="col-sm-2"></div>
 
-        </div>
-
-        
+    </main>
     </div>
-</div>
-<hr>
-  <div class="col-sm-2"></div>
-
-</main>
-</div> <!-- end content -->
     <footer>
         <% include ../partials/footer %>
     </footer>
 
 </body>
+
 </html>

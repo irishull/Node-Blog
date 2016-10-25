@@ -14,7 +14,6 @@ var static = require('node-static');
 
 var app = express();
 
-
 app.use(express.static('node_modules/ckeditor'));
 
 app.use(express.static('js'));
@@ -36,10 +35,10 @@ app.use(expressValidator({
        User.findOne({ email: email })
        .then(function(user) {
          if (!user) {
-           resolve(user);
+           resolve();
          }
          else {
-           reject(user);
+           reject();
          }
        })
        .catch(function(error){

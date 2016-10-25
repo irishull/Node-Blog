@@ -13,11 +13,11 @@ router.get('/', function(req, res, next){
 	});
 });
 
-router.get('/new', function(req, res){
+router.get('/new', checkUser, function(req, res){
 	res.render('articles/new');
 });
 
-router.post("/new", function(req, res){
+router.post("/new", checkUser, function(req, res){
 	Article.create(req.body, function(err, data){
 		if (err) {
 			return next(err);
@@ -27,8 +27,6 @@ router.post("/new", function(req, res){
 	});
 });
 
-// "/:id/edit"
-
 router.get('/edit', function(req, res){
 	res.render('articles/edit');
 
@@ -36,7 +34,7 @@ router.get('/edit', function(req, res){
 
 });
 
-router.get('/:id/edit', function(req, res, next){
+router.get('/:id/edit', checkUser, function(req, res, next){
 		Article.findById(req.params.id, function(err, data){
 		if (err) {
 			return next(err);
@@ -52,7 +50,7 @@ router.get('/:id/edit', function(req, res, next){
 
 })
 
-router.post('/:id/edit', function(req, res){
+router.post('/:id/edit', checkUser, function(req, res){
 
 		Article.findById(req.params.id, function(err, data){
 		if (err) {
@@ -72,7 +70,7 @@ router.post('/:id/edit', function(req, res){
 	});	
 })
 
-router.post('/:id/delete', function(req, res) {
+router.post('/:id/delete', checkUser, function(req, res) {
 
 		Article.findById(req.params.id, function(err, data){
 		if (err) {
@@ -103,5 +101,18 @@ router.get('/:id', function(req, res, next){
 		}
 	});
 });
+
+function checkUser(req, res, next) {
+	if(!req.session.currentUser){
+		req.session.attemptedPath = req.originalUrl;
+		console.log(req.session.attemptedPath);
+		console.log("Unauthorized Edit, Redirecting.");
+		return res.redirect('/users/login')
+	} else {
+		next();
+	}
+	
+}
+
 
 module.exports = router;

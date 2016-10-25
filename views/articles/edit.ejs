@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ../partials/head %>
 </head>
+
 <body>
     <header>
         <% include ../partials/header %>
     </header>
 
-<main>
+    <main>
 
-<div class="container text-center">
-<div class="row">
-          <h1>Edit Article</h1>
-          </div>
-          </div>
+        <div class="container text-center">
+            <div class="row">
+                <h1>Edit Article</h1>
+            </div>
+        </div>
 
-<% include ../partials/form %>
+        <% include ../partials/form %>
 
 
-<hr>
-</div>
-</main>
+            <hr>
+            </div>
+    </main>
 
-<script src="/ckeditor.js"></script>
-<script>CKEDITOR.replace( 'articlebody', {
-    customConfig: '/ckconfig.js'
-});</script>
+    <script src="/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('articlebody', {
+            customConfig: '/ckconfig.js'
+        });
+    </script>
 
     <footer>
         <% include ../partials/footer %>
     </footer>
 
 </body>
+
 </html>
