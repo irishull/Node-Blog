@@ -14,11 +14,13 @@
     "ckeditor": "^4.5.11",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.3.2",
+    "connect-mongodb-session": "^1.3.0",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
     "express-validator": "^2.20.10",
     "mongoose": "^4.6.1",
+    "mongoose-url-slugs": "^0.2.1",
     "node-ckeditor": "^4.5.9",
     "node-static": "^0.7.9"
   }

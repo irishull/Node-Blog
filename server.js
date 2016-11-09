@@ -4,11 +4,7 @@ var bp = require('body-parser');
 
 var port = process.env.NODE_PORT || 3000;
 
-var expressValidator = require('express-validator');
-
 var session = require('express-session');
-
-var bcrypt = require('bcrypt');
 
 var static = require('node-static');
 
@@ -18,38 +14,9 @@ app.use(express.static('node_modules/ckeditor'));
 
 app.use(express.static('js'));
 
-var mongoose = require("mongoose");
-
-mongoose.Promise = global.Promise;
-
-var User = require("./models/user");
-
 app.use(bp.json());
 
 app.use(bp.urlencoded({extended: true}));
-
-app.use(expressValidator({
- customValidators: {
-   isEmailAvailable: function(email) {
-     return new Promise(function(resolve, reject) {
-       User.findOne({ email: email })
-       .then(function(user) {
-         if (!user) {
-           resolve();
-         }
-         else {
-           reject();
-         }
-       })
-       .catch(function(error){
-         if (error) {
-           reject(error);
-         }
-       });
-     });
-   }
- }
-}));
 
 app.use(session({
     secret: 'itsasecret989',
@@ -62,9 +29,9 @@ app.set('views', './views');
 
 require("./db");
 
+require("./middleware")(app);
+
 require("./controllers")(app);
-
-
 
 app.get('*', function(req, res){
 	res.status(404)
@@ -80,10 +47,6 @@ app.use(function(err, req, res, next){
 	}
 });
 
-
 app.listen(port, function(){
 	console.log("Server Listening on Port:",port);
 })
-
-
-
