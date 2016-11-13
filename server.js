@@ -18,6 +18,19 @@ app.use(bp.json());
 
 app.use(bp.urlencoded({extended: true}));
 
+var MongoDBStore = require('connect-mongodb-session')(session);
+
+var store = new MongoDBStore(
+      {
+        uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+        collection: 'mySessions'
+      });
+ 
+    store.on('error', function(error) {
+      assert.ifError(error);
+      assert.ok(false);
+    });
+
 app.use(session({
     secret: 'itsasecret989',
     resave: true,
