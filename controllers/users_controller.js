@@ -10,6 +10,10 @@ router.get('/signup', function(req, res, next) {
 
 });
 
+router.get('/profile', checkUser, function(req,res,next) {
+    res.render('users/profile');
+})
+
 
 router.post('/signup', function(req, res, next) {
 	console.log("Hit Route");
