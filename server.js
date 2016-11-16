@@ -8,6 +8,14 @@ var session = require('express-session');
 
 var static = require('node-static');
 
+var MongoDBStore = require('connect-mongodb-session')(session);
+
+    var store = new MongoDBStore(
+      {
+        uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+        collection: 'mySessions'
+      });
+
 var app = express();
 
 app.use(express.static('node_modules/ckeditor'));
