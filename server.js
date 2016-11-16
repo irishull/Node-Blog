@@ -16,6 +16,12 @@ var MongoDBStore = require('connect-mongodb-session')(session);
         collection: 'mySessions'
       });
 
+    store.on('error', function(error) {
+        console.log("Error From dbSessionStore");
+        console.log(error.toString());
+        
+    });
+
 var app = express();
 
 app.use(express.static('node_modules/ckeditor'));
@@ -28,6 +34,7 @@ app.use(bp.urlencoded({extended: true}));
 
 app.use(session({
     secret: 'itsasecret989',
+    store: store,
     resave: true,
     saveUninitialized: true
 }));
@@ -51,7 +58,7 @@ app.use(function(err, req, res, next){
 		res.status(404)
 		.send('Not Found');
 	} else {
-		res.status(500).send(err.message);
+//		res.status(500).send(err.message);
 	}
 });
 

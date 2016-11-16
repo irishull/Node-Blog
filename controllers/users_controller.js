@@ -78,7 +78,7 @@ router.post('/login', function(req, res, next) {
 					return res.redirect("/users/login");
 				} else {
 					console.log("in 2nd else route");
-					req.session.currentUser = data;
+					req.session.currentUser = data.email;
 					if(req.session.attemptedPath){
 						res.redirect(req.session.attemptedPath);
 					} else {
