@@ -27,14 +27,17 @@ var store = new MongoDBStore(
       });
  
     store.on('error', function(error) {
-      assert.ifError(error);
-      assert.ok(false);
+//      assert.ifError(error);
+//      assert.ok(false);
+//        throw(error);
+        console.log(error.message);
     });
 
 app.use(session({
     secret: 'itsasecret989',
+    store: store,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
 }));
 
 app.set('view engine', 'ejs');

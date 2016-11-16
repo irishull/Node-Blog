@@ -33,6 +33,7 @@ router.post('/signup', function(req, res, next) {
 			}
 
 			console.log("User Created");
+            console.log(JSON.stringify(data));
 			req.session.currentUser = data;
 
 			return res.redirect("/");
@@ -82,6 +83,8 @@ router.post('/login', function(req, res, next) {
 					return res.redirect("/users/login");
 				} else {
 					console.log("in 2nd else route");
+                    console.log("TRYING TO STRINGIFY BULLSHITTT");
+                    console.log(JSON.stringify(data));
 					req.session.currentUser = data;
 					if(req.session.attemptedPath){
 						res.redirect(req.session.attemptedPath);
