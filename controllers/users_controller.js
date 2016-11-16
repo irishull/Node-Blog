@@ -29,7 +29,7 @@ router.post('/signup', function(req, res, next) {
 			}
 
 			console.log("User Created");
-			req.session.currentUser = data;
+			req.session.currentUser = data.email;
 
 			return res.redirect("/");
 		});			

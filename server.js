@@ -58,7 +58,7 @@ app.use(function(err, req, res, next){
 		res.status(404)
 		.send('Not Found');
 	} else {
-//		res.status(500).send(err.message);
+		res.status(500).send(err.message);
 	}
 });
 
