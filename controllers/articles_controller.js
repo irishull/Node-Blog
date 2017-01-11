@@ -89,14 +89,11 @@ router.post('/:myslug/delete', checkUser, function(req, res) {
 
 
 router.get('/:myslug', function(req, res, next){
-	console.log("in slug route")
 	Article.findOne({myslug: req.params.myslug}, function(err, data){
 		if (err) {
 			return next(err);
 		} else {
 			if (data) {
-				console.log("found");
-				console.log(data);
 				res.render("articles/single", {article: data});
 			} else {
 				console.log("article not found");
