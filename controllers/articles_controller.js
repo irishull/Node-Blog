@@ -22,7 +22,7 @@ router.post("/new", checkUser, function(req, res){
 		if (err) {
 			return next(err);
 		} else {
-			res.redirect("/articles/" + data._id);
+			res.redirect("/articles/" + data.myslug);
 		}		
 	});
 });
@@ -34,8 +34,8 @@ router.get('/edit', function(req, res){
 
 });
 
-router.get('/:id/edit', checkUser, function(req, res, next){
-		Article.findById(req.params.id, function(err, data){
+router.get('/:myslug/edit', checkUser, function(req, res, next){
+		Article.findOne({myslug: req.params.myslug}, function(err, data){
 		if (err) {
 			return next(err);
 		} else {
@@ -50,9 +50,9 @@ router.get('/:id/edit', checkUser, function(req, res, next){
 
 })
 
-router.post('/:id/edit', checkUser, function(req, res){
+router.post('/:myslug/edit', checkUser, function(req, res){
 
-		Article.findById(req.params.id, function(err, data){
+		Article.findOne({myslug: req.params.myslug}, function(err, data){
 		if (err) {
 			return next(err);
 		} else {
@@ -62,7 +62,7 @@ router.post('/:id/edit', checkUser, function(req, res){
 				});
 			} else {
 				Article.update(data, req.body, function(){
-					res.redirect("/articles/" + req.params.id);
+					res.redirect("/articles/" + req.params.myslug);
 				});
 			}
 
@@ -70,9 +70,9 @@ router.post('/:id/edit', checkUser, function(req, res){
 	});	
 })
 
-router.post('/:id/delete', checkUser, function(req, res) {
+router.post('/:myslug/delete', checkUser, function(req, res) {
 
-		Article.findById(req.params.id, function(err, data){
+		Article.findOne({myslug: req.params.myslug}, function(err, data){
 		if (err) {
 			return next(err);
 		} else {
@@ -88,14 +88,18 @@ router.post('/:id/delete', checkUser, function(req, res) {
 })
 
 
-router.get('/:id', function(req, res, next){
-	Article.findById(req.params.id, function(err, data){
+router.get('/:myslug', function(req, res, next){
+	console.log("in slug route")
+	Article.findOne({myslug: req.params.myslug}, function(err, data){
 		if (err) {
 			return next(err);
 		} else {
 			if (data) {
+				console.log("found");
+				console.log(data);
 				res.render("articles/single", {article: data});
 			} else {
+				console.log("article not found");
 				next();
 			}
 		}
